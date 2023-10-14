@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:firebase_core/firebase_core.dart";
 import "package:firebase_auth/firebase_auth.dart";
+import "firebase_options.dart";
 
 void main() {
   runApp(MaterialApp(
@@ -63,12 +65,15 @@ class _HomePageState extends State<HomePage> {
           ),
           TextButton(
             onPressed: () async {
+              await Firebase.initializeApp(
+                options: DefaultFirebaseOptions.currentPlatform,
+              );
               final email = _email.text;
               final password = _password.text;
-              final UserCredential = await FirebaseAuth.instance
+              final userCredential = await FirebaseAuth.instance
                   .createUserWithEmailAndPassword(
                       email: email, password: password);
-              print(UserCredential);
+              print(userCredential);
             },
             child: const Text("Register"),
           ),
