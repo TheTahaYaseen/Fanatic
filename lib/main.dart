@@ -4,6 +4,7 @@ import "package:firebase_auth/firebase_auth.dart";
 import "firebase_options.dart";
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
