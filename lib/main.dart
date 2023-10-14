@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:firebase_auth/firebase_auth.dart";
 
 void main() {
   runApp(MaterialApp(
@@ -51,11 +52,21 @@ class _HomePageState extends State<HomePage> {
           ),
           TextField(
             controller: _password,
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
             decoration:
                 const InputDecoration(hintText: "Enter Your Password Here: "),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              final email = _email.text;
+              final password = _password.text;
+              final UserCredential = await FirebaseAuth.instance
+                  .createUserWithEmailAndPassword(
+                      email: email, password: password);
+              print(UserCredential);
+            },
             child: const Text("Register"),
           ),
         ],
