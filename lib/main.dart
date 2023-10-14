@@ -44,8 +44,16 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          TextField(),
-          TextField(),
+          TextField(
+            controller: _email,
+            decoration:
+                const InputDecoration(hintText: "Enter Your Email Here: "),
+          ),
+          TextField(
+            controller: _password,
+            decoration:
+                const InputDecoration(hintText: "Enter Your Password Here: "),
+          ),
           TextButton(
             onPressed: () {},
             child: const Text("Register"),

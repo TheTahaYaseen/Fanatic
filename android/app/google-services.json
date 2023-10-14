@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796843944530",
+    "project_id": "fanatic-flutter",
+    "storage_bucket": "fanatic-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796843944530:android:6d90cc7558789212ebcd8b",
+        "android_client_info": {
+          "package_name": "com.example.fanatic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjHtqBlkRCUaVXU7dWcTw009gOP698J6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
