@@ -68,6 +68,9 @@ class _LoginViewState extends State<LoginView> {
           },
           child: const Text("Login"),
         ),
+        TextButton(
+            onPressed: () {},
+            child: const Text("Not Registered Yet? Register Here!"))
       ],
     );
   }
