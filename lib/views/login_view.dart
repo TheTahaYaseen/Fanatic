@@ -30,51 +30,58 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _email,
-          keyboardType: TextInputType.emailAddress,
-          enableSuggestions: false,
-          autocorrect: false,
-          decoration:
-              const InputDecoration(hintText: "Enter Your Email Here: "),
-        ),
-        TextField(
-          controller: _password,
-          obscureText: true,
-          enableSuggestions: false,
-          autocorrect: false,
-          decoration:
-              const InputDecoration(hintText: "Enter Your Password Here: "),
-        ),
-        TextButton(
-          onPressed: () async {
-            final email = _email.text;
-            final password = _password.text;
-            try {
-              final userCredential = await FirebaseAuth.instance
-                  .signInWithEmailAndPassword(email: email, password: password);
-              print(userCredential);
-            } on FirebaseAuthException catch (error) {
-              if (error.code == "INVALID_LOGIN_CREDENTIALS") {
-                print("Invalid Login Credentials!");
-              } else if (error.code == "user-not-found") {
-                print("User Not Found!");
-              } else if (error.code == "wrong-password") {
-                print("Wrong Password!");
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login"),
+        leading: const Icon(Icons.login),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: _email,
+            keyboardType: TextInputType.emailAddress,
+            enableSuggestions: false,
+            autocorrect: false,
+            decoration:
+                const InputDecoration(hintText: "Enter Your Email Here: "),
+          ),
+          TextField(
+            controller: _password,
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            decoration:
+                const InputDecoration(hintText: "Enter Your Password Here: "),
+          ),
+          TextButton(
+            onPressed: () async {
+              final email = _email.text;
+              final password = _password.text;
+              try {
+                final userCredential = await FirebaseAuth.instance
+                    .signInWithEmailAndPassword(
+                        email: email, password: password);
+                print(userCredential);
+              } on FirebaseAuthException catch (error) {
+                if (error.code == "INVALID_LOGIN_CREDENTIALS") {
+                  print("Invalid Login Credentials!");
+                } else if (error.code == "user-not-found") {
+                  print("User Not Found!");
+                } else if (error.code == "wrong-password") {
+                  print("Wrong Password!");
+                }
               }
-            }
-          },
-          child: const Text("Login"),
-        ),
-        TextButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil("/register/", (route) => false);
             },
-            child: const Text("Not Registered Yet? Register Here!"))
-      ],
+            child: const Text("Login"),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil("/register/", (route) => false);
+              },
+              child: const Text("Not Registered Yet? Register Here!"))
+        ],
+      ),
     );
   }
 }
