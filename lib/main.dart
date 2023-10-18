@@ -33,20 +33,39 @@ class HomePage extends StatelessWidget {
           case ConnectionState.done:
             final user = FirebaseAuth.instance.currentUser;
             if (user != null) {
-              if (user?.emailVerified ?? false) {
+              if (user.emailVerified) {
               } else {
                 return const VerifyEmailView();
               }
             } else {
               return const LoginView();
             }
-            return const Text("Done");
+            return const NotesView();
           default:
             return const CircularProgressIndicator();
         }
       },
       future: Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
+      ),
+    );
+  }
+}
+
+class NotesView extends StatefulWidget {
+  const NotesView({super.key});
+
+  @override
+  State<NotesView> createState() => _NotesViewState();
+}
+
+class _NotesViewState extends State<NotesView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Main UI"),
+        leading: const Icon(Icons.interpreter_mode),
       ),
     );
   }
